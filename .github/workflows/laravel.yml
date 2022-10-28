@@ -29,6 +29,6 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v2
       - name: Running composer install
-        run: composer install
+        run: composer install --ignore-platform-req=ext-gd
       - name: Running phpunit
         run: ./vendor/bin/phpunit tests
