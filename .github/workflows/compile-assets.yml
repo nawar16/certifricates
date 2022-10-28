@@ -17,5 +17,3 @@ jobs:
             composer install
             npm install
             npm run production
-      - name: Verify assets
-        run: ls -l dist
