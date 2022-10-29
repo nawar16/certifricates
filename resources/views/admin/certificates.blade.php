@@ -73,54 +73,109 @@
       <form method="post" action="{{route('certificates.store')}}">
         @csrf
       <div class="form-group">
-    <label for="exampleInputEmail1">First name</label>
-    <input name="fname" type="text" class="form-control" id="exampleInputName1"  placeholder="Enter First Name">
-  </div>
-  <div class="form-group">
-    <label for="exampleInputEmail1">Last name</label>
-    <input name="lname" type="text" class="form-control" id="exampleInputName2"  placeholder="Enter Last Name">
-  </div>
-  <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-    <input name="email" type="email" class="form-control" id="exampleInputEmail1"  placeholder="Enter Email Address">
-  </div>
-  <div class="form-group">
-    <label for="exampleInputEmail1">Degree</label>
-    <input name="degree" type="text" class="form-control" id="exampleInputDegree"  placeholder="Enter Degree">
-  </div>
-  <div class="form-group">
-    <label for="exampleInputSource">Source</label>
-    <input name="source" type="text" class="form-control" id="exampleInputSource"  placeholder="Enter Source">
-  </div>
-
-  <div class="form-check form-check-radio">
-    <label class="form-check-label">
-        <input class="form-check-input" type="radio" name="type" id="type1" value="Honorary" checked>
-        Honorary
-        <span class="circle">
-            <span class="check"></span>
-        </span>
-    </label>
-</div>
-<div class="form-check form-check-radio">
-    <label class="form-check-label">
-        <input class="form-check-input" type="radio" name="type" id="type2" value="Professional" >
-        Professional
-        <span class="circle">
-            <span class="check"></span>
-        </span>
-    </label>
-</div>
-
-
-  <button type="submit" class="btn btn-success">Save</button>
-</form>
+        <label for="exampleInputEmail1">First name</label>
+         <input name="fname" type="text" class="form-control" id="exampleInputName1"  placeholder="Enter First Name">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Last name</label>
+        <input name="lname" type="text" class="form-control" id="exampleInputName2"  placeholder="Enter Last Name">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input name="email" type="email" class="form-control" id="exampleInputEmail1"  placeholder="Enter Email Address">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Degree</label>
+        <input name="degree" type="text" class="form-control" id="exampleInputDegree"  placeholder="Enter Degree">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputSource">Source</label>
+        <input name="source" type="text" class="form-control" id="exampleInputSource"  placeholder="Enter Source">
+      </div>
+      <div class="form-check form-check-radio">
+        <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="type" id="type1" value="Honorary" checked>
+            Honorary
+            <span class="circle">
+                <span class="check"></span>
+            </span>
+        </label>
+      </div>
+      <div class="form-check form-check-radio">
+          <label class="form-check-label">
+              <input class="form-check-input" type="radio" name="type" id="type2" value="Professional" >
+              Professional
+              <span class="circle">
+                  <span class="check"></span>
+              </span>
+          </label>
+      </div>
+      <button type="submit" class="btn btn-success">Save</button>
+      </form>
       </div>
     
     </div>
   </div>
 </div>
 
+<div class="modal" id="EditCertificate" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit Certificate</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <form method="post"  id="editForm">
+        @csrf
+        @method('PUT')
+      <div class="form-group">
+        <label for="exampleInputEmail1">First name</label>
+         <input name="fname" type="text" class="form-control" id="fname"  placeholder="Enter First Name">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Last name</label>
+        <input name="lname" type="text" class="form-control" id="lname"  placeholder="Enter Last Name">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input name="email" type="email" class="form-control" id="email"  placeholder="Enter Email Address">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Degree</label>
+        <input name="degree" type="text" class="form-control" id="degree"  placeholder="Enter Degree">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputSource">Source</label>
+        <input name="source" type="text" class="form-control" id="source"  placeholder="Enter Source">
+      </div>
+      <div class="form-check form-check-radio">
+        <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="type" id="type1" value="Honorary" checked>
+            Honorary
+            <span class="circle">
+                <span class="check"></span>
+            </span>
+        </label>
+      </div>
+      <div class="form-check form-check-radio">
+          <label class="form-check-label">
+              <input class="form-check-input" type="radio" name="type" id="type2" value="Professional" >
+              Professional
+              <span class="circle">
+                  <span class="check"></span>
+              </span>
+          </label>
+      </div>
+      <button type="submit" class="btn btn-success">Save</button>
+      </form>
+      </div>
+    
+    </div>
+  </div>
+</div>
 
 
 <script type="text/javascript">
@@ -130,30 +185,41 @@ $(function () {
 
 
 var table = $('.data-table').DataTable({
-
     processing: true,
-
     serverSide: true,
-
     ajax: "{{ route('certificates.index') }}",
-
     columns: [
-
         {data: 'id', name: 'id'},
-
         {data: 'fname', name: 'fname'},
         {data: 'lname', name: 'lname'},
-
-       
         {data: 'type', name: 'type'},
         {data: 'action', name: 'action', orderable: false, searchable: false},
-
     ]
-
 });
 
 
 
+table.on('click', '.edit', function() {
+    $tr = $(this).closest('tr');
+    if ($($tr).hasClass('child')) {
+        $tr = $tr.prev('.parent');
+    }
+
+    var data = table.row($tr).data();
+    console.log(data['fname']);
+
+    $('#fname').val(data['fname']);
+    $('#lname').val(data['lname']);
+    $('#email').val(data['email']);
+    $('#degree').val(data['degree']);
+    $('#source').val(data['source']);
+
+    $('#editForm').attr('action', '/certificate/'+data['id']);
+    $('#EditCertificate').modal('show');
+});
+$('#EditCertificate').on('hidden.bs.modal', function(e) {
+        $(this).find('#editForm')[0].reset();
+        });
 });
 
 </script>

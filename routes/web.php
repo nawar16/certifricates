@@ -22,6 +22,7 @@ Route::get('/', function () {
 
 Route::get('certificates', [CertificateController::class, 'index'])->name('certificates.index');
 Route::post('certificate', [CertificateController::class, 'store'])->name('certificates.store');
+Route::put('certificate/{id}', [CertificateController::class, 'update'])->name('certificates.update');
 
 Route::get('certificate/print/{id}', [CertificateController::class, 'print'])->name('certificates.print');
 Route::get('certificate/do_print/{id}', [CertificateController::class, 'do_print'])->name('certificates.print');
